@@ -1,0 +1,53 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.Priority?>
+
+<VBox spacing="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="melina.maouchi.javafxproject.controllers.InvoiceController" style="-fx-background-color: #f8f9fa;">
+    <HBox style="-fx-background-color: #2c3e50; -fx-padding: 15; -fx-spacing: 20;">
+        <Label text="Invoice Management" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #ecf0f1;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Products" onAction="#goToProducts" style="-fx-background-color: transparent; -fx-text-fill: #ecf0f1; -fx-font-size: 14px;"/>
+        <Button text="Orders" onAction="#goToOrders" style="-fx-background-color: transparent; -fx-text-fill: #ecf0f1; -fx-font-size: 14px;"/>
+        <Button text="Invoices" onAction="#goToInvoices" style="-fx-background-color: transparent; -fx-text-fill: #ecf0f1; -fx-font-size: 14px;"/>
+        <Button text="Customers" onAction="#goToCustomer" style="-fx-background-color: transparent; -fx-text-fill: #ecf0f1; -fx-font-size: 14px;"/>
+    </HBox>
+
+    <VBox spacing="20" style="-fx-padding: 20;">
+        <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+            <Label text="Select Order:" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+            <ComboBox fx:id="orderComboBox" onAction="#selectOrder" prefWidth="200" style="-fx-font-size: 14px; -fx-background-color: #ecf0f1; -fx-border-radius: 3;"/>
+        </HBox>
+
+        <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+            <Label text="Invoice Date:" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+            <DatePicker fx:id="invoiceDatePicker" style="-fx-font-size: 14px; -fx-background-color: #ecf0f1; -fx-border-radius: 3;"/>
+        </HBox>
+
+        <Label fx:id="totalAmountLabel" text="0.00" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #34495e; -fx-padding: 10; -fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);"/>
+
+        <HBox spacing="10" style="-fx-alignment: center;">
+            <Button text="Generate Invoice" onAction="#generateInvoice" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
+            <Button text="Update Invoice" onAction="#updateInvoice" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
+        </HBox>
+
+        <TableView fx:id="invoicesTable" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+            <columns>
+                <TableColumn text="ID" fx:id="idColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+                <TableColumn text="Order ID" fx:id="orderIdColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+                <TableColumn text="Invoice Date" fx:id="invoiceDateColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+                <TableColumn text="Total Amount" fx:id="totalAmountColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+            </columns>
+            <VBox.vgrow><Priority fx:constant="ALWAYS"/></VBox.vgrow>
+        </TableView>
+
+        <Button text="Delete Invoice" onAction="#deleteInvoice" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
+    </VBox>
+</VBox>

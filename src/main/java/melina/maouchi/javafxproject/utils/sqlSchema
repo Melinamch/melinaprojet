@@ -1,0 +1,53 @@
+CREATE DATABASE java_fx_project;
+
+-- Products Table
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price NUMERIC(10,2) NOT NULL,
+    category VARCHAR(100),
+    stock INTEGER NOT NULL
+);
+
+-- Customers Table
+CREATE TABLE customers (
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    phone VARCHAR(20)
+);
+
+-- Orders Table
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    customer_id INTEGER REFERENCES customers(id),
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(20) NOT NULL,
+    total_amount NUMERIC(10,2) NOT NULL
+);
+
+-- Order Items Table (for many-to-many relationship)
+CREATE TABLE order_items (
+    id SERIAL PRIMARY KEY,
+    order_id INTEGER REFERENCES orders(id),
+    product_id INTEGER REFERENCES products(id),
+    quantity INTEGER NOT NULL,
+    price NUMERIC(10,2) NOT NULL
+);
+
+-- Invoices Table
+CREATE TABLE invoices (
+    id SERIAL PRIMARY KEY,
+    order_id INTEGER UNIQUE REFERENCES orders(id),
+    invoice_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total_amount NUMERIC(10,2) NOT NULL
+);
+
+-- Add a nullable status to products for inventory management
+ALTER TABLE products ADD COLUMN status VARCHAR(20) DEFAULT 'AVAILABLE';
+
+-- Add some constraints and indexes
+ALTER TABLE customers ADD CONSTRAINT unique_email UNIQUE (email);
+CREATE INDEX idx_order_customer ON orders(customer_id);
+CREATE INDEX idx_order_status ON orders(status);
