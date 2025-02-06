@@ -19,11 +19,29 @@ If you are using Git, clone the repository to your local machine:
 ## Set Up the PostgreSQL Database
 
 - Install PostgreSQL and ensure the PostgreSQL service is running.
-- Create a new database named `java_fx_project`.
+- Create a new database named `javafx_project`.
 - Update the database connection details in the application configuration file (if applicable).
 
-## Project Structure
 
+### 1. Navigate to the Project Directory
+
+```bash
+cd Melinaprojet
+```
+### 2. Build the Project Using Maven
+
+Run the following command to clean and package the project:
+
+```bash
+mvn clean package
+```
+This will generate a JAR file in the target directory:
+Melina-jar-with-dependencies.jar
+```bash
+java --module-path "C:\Users\melin\javafx-sdk-23.0.2\lib" --add-modules javafx.controls,javafx.fxml -jar target/Melina-jar-with-dependencies.jar
+```
+
+## Project Structure
 The project is organized as follows:
 
 ```bash
