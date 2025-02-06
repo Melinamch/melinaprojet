@@ -36,6 +36,9 @@ public class ProductController {
     private TableColumn<Product, String> category;
     @FXML
     private TableColumn<Product, Integer> stock;
+    @FXML
+    private TextField searchField;
+
 
     public ProductController() {
         this.productRepository = new ProductRepositoryImpl();
@@ -48,7 +51,7 @@ public class ProductController {
             return;
         }
 
-        categoryComboBox.getItems().addAll("Electronics", "Clothing", "Furniture", "Automotive");
+        categoryComboBox.getItems().addAll("Electronics", "Clothing", "Furniture", "Automotive", "Accessories", "beauty","Games");
 
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
         price.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getPrice()));
@@ -135,6 +138,21 @@ public class ProductController {
         categoryComboBox.setValue(null);
         stockField.clear();
     }
+    @FXML
+    public void searchProducts() {
+        String query = searchField.getText().toLowerCase();  // Récupère le texte de recherche
+        try {
+            // Utiliser la méthode searchByKeyword de ProductRepositoryImpl pour rechercher les produits
+            ObservableList<Product> products = FXCollections.observableArrayList(
+                    productRepository.searchByKeyword(query)
+            );
+            productTable.setItems(products);
+        } catch (Exception e) {
+            System.err.println("Error searching products: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
 
     @FXML
     public void goToProducts() {
