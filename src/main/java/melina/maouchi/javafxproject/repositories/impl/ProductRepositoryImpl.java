@@ -90,25 +90,8 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public List<Product> findAll() {
-        List<Product> products = new ArrayList<>();
-        String sql = "SELECT * FROM products";
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                Product product = new Product();
-                product.setId(rs.getInt("id"));
-                product.setName(rs.getString("name"));
-                product.setPrice(rs.getDouble("price"));
-                product.setCategory(rs.getString("category"));
-                product.setStock(rs.getInt("stock"));
-                products.add(product);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Error finding all products", e);
-        }
-        return products;
+        return searchByKeyword(""); // Utilise searchByKeyword pour retourner tous les produits
     }
-
 
     @Override
     public List<Product> searchByKeyword(String keyword) {
@@ -133,6 +116,10 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
         return products;
     }
+
+
+
+
 
     @Override
     public List<Product> findByCategory(String category) {
