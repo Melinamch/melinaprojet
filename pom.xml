@@ -5,9 +5,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>melina.maouchi</groupId>
-  <artifactId>JavaFx-project</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <name>JavaFx-project</name>
+  <artifactId>MelinaProjet</artifactId>
+  <version>1.0</version>
+
+  <build>
+    <finalName>Melina</finalName>
+  </build>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
