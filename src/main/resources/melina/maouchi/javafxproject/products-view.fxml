@@ -42,10 +42,6 @@
             <Button text="Update Product" onAction="#updateProduct" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
             <Button text="Delete Product" onAction="#deleteProduct" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
         </HBox>
-        <HBox spacing="10" style="-fx-alignment: center;">
-            <TextField fx:id="searchField" promptText="Search by name or category" style="-fx-font-size: 14px; -fx-pref-width: 200; -fx-background-color: #ecf0f1; -fx-border-radius: 3;"/>
-            <Button text="Search" onAction="#searchProduct" style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
-        </HBox>
 
 
         <TableView fx:id="productTable" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
