@@ -29,6 +29,8 @@ public class ProductController {
     @FXML
     private TextField stockField;
     @FXML
+    private TextField searchField;
+    @FXML
     private TableColumn<Product, String> name;
     @FXML
     private TableColumn<Product, Double> price;
@@ -134,6 +136,13 @@ public class ProductController {
         priceField.clear();
         categoryComboBox.setValue(null);
         stockField.clear();
+    }
+
+    @FXML
+    public void onSearch() {
+        String query = searchField.getText().trim();
+        ObservableList<Product> results = FXCollections.observableArrayList(productRepository.searchProducts(query));
+        productTable.setItems(results);
     }
 
     @FXML

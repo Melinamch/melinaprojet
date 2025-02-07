@@ -109,7 +109,54 @@ public class ProductRepositoryImpl implements ProductRepository {
         return products;
     }
 
+    public List<Product> searchProducts(String query) {
+        List<Product> products = new ArrayList<>();
 
+        if (query == null || query.trim().isEmpty()) {
+            return findAll(); // Retourne tous les produits si aucun mot-clé n'est donné
+        }
+
+        // Remplace "ET" et "OU" par "AND" et "OR" pour SQL
+        String sqlQuery = "SELECT * FROM products WHERE ";
+        String[] terms = query.split("\\s+(ET|OU)\\s+");
+        StringBuilder sqlCondition = new StringBuilder();
+
+        for (int i = 0; i < terms.length; i++) {
+            sqlCondition.append("(name LIKE ? OR category LIKE ?)");
+            if (i < terms.length - 1) {
+                sqlCondition.append(query.contains("ET") ? " AND " : " OR ");
+            }
+        }
+
+        sqlQuery += sqlCondition.toString();
+
+        try (PreparedStatement stmt = connection.prepareStatement(sqlQuery)) {
+            int index = 1;
+            for (String term : terms) {
+                stmt.setString(index++, "%" + term.trim() + "%");
+                stmt.setString(index++, "%" + term.trim() + "%");
+            }
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Product product = new Product();
+                    product.setId(rs.getInt("id"));
+                    product.setName(rs.getString("name"));
+                    product.setPrice(rs.getDouble("price"));
+                    product.setCategory(rs.getString("category"));
+                    product.setStock(rs.getInt("stock"));
+                    products.add(product);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error executing advanced search", e);
+        }
+
+        return products;
+    }
+
+
+    /*
     @Override
     public List<Product> searchByKeyword(String keyword) {
         List<Product> products = new ArrayList<>();
@@ -133,7 +180,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
         return products;
     }
-
+*/
     @Override
     public List<Product> findByCategory(String category) {
         List<Product> products = new ArrayList<>();

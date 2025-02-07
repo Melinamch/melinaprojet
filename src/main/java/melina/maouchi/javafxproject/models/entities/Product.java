@@ -1,5 +1,6 @@
 package melina.maouchi.javafxproject.models.entities;
 
+
 public class Product {
     private int id;
     private String name;
