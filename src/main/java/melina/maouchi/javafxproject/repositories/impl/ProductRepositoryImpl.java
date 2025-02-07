@@ -115,13 +115,13 @@ public class ProductRepositoryImpl implements ProductRepository {
         if (query == null || query.trim().isEmpty()) {
             return findAll(); // Retourne tous les produits si aucun mot-clé n'est donné
         }
-        String[] terms = query.split("\\s+(ET|OU)\\s+");
+        String[] terms = query.split("\\s+(?i)ET|OU\\s+");
         boolean isAndSearch = query.contains("ET");
 
         // Construire la requête SQL dynamiquement
         StringBuilder sqlQuery = new StringBuilder("SELECT * FROM products WHERE ");
         for (int i = 0; i < terms.length; i++) {
-            sqlQuery.append("(category LIKE ? OR category LIKE ?)");
+            sqlQuery.append("(name LIKE ? OR name LIKE ?)");
             if (i < terms.length - 1) {
                 sqlQuery.append(isAndSearch ? " AND " : " OR ");
             }
