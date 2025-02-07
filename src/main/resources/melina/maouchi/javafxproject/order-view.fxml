@@ -52,7 +52,7 @@
             <Label fx:id="totalAmountLabel" text="0.00" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
             <Button text="Create Order" onAction="#createOrder" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
 
-            <Button text="Update" onAction="#updateOrder" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
+            <Button text="Update" onAction="#updateOrderStatus" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
             <Button text="Cancel" onAction="#cancelOrder" style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
             <Button text="Delete" onAction="#deleteOrder" style="-fx-background-color: #E91E63; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
         </HBox>
