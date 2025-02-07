@@ -1,7 +1,7 @@
-# JavaFX Project - Product Sales Management System
+# Java Project
 
-Nom: MAOUCHI     Prenom: Melina
-This is a JavaFX-based application designed to manage product sales. It provides functionalities such as product catalog management, order processing, client management, and billing. The application connects to a PostgreSQL database for data storage and retrieval.
+Nom: MAOUCHI            
+Prenom: Melina 
 
 
 ## Prerequisites
@@ -21,14 +21,14 @@ If you are using Git, clone the repository to your local machine:
 ## Set Up the PostgreSQL Database
 
 - Install PostgreSQL and ensure the PostgreSQL service is running.
-- Create a new database named `javafx_project`.
-- Update the database connection details in the application configuration file (if applicable).
+- Create a new database named `melina_project`.
+- Update the database connection details in the application configuration file (utils).
 
 
 ### 1. Navigate to the Project Directory
 
 ```bash
-cd Melinaprojet
+cd melinamaouchii
 ```
 ### 2. Build the Project Using Maven
 

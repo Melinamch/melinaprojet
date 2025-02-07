@@ -2,10 +2,7 @@ package melina.maouchi.javafxproject.controllers;
 
 import melina.maouchi.javafxproject.HelloApplication;
 
-import melina.maouchi.javafxproject.models.entities.Customer;
-import melina.maouchi.javafxproject.models.entities.Order;
-import melina.maouchi.javafxproject.models.entities.OrderItem;
-import melina.maouchi.javafxproject.models.entities.Product;
+import melina.maouchi.javafxproject.models.entities.*;
 import melina.maouchi.javafxproject.models.enums.OrderStatus;
 
 import javafx.beans.property.SimpleObjectProperty;
@@ -56,7 +53,9 @@ public class OrderController {
         this.customerRepository = new CustomerRepositoryImpl();
         this.productRepository = new ProductRepositoryImpl();
         this.orderRepository = new OrderRepositoryImpl(customerRepository, productRepository);
+
     }
+
 
     @FXML
     public void initialize() {
@@ -217,9 +216,11 @@ public class OrderController {
             selectedOrder.setStatus(OrderStatus.VALIDATED);
             orderRepository.update(selectedOrder);
             refreshSavedOrdersTable();
+
         } else {
             showAlert("No Selection", "Please select an order to update");
         }
+
     }
 
     private void showAlert(String title, String message) {
@@ -229,21 +230,7 @@ public class OrderController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-/*
-    @FXML
-    public void editOrder() {
-        Order selectedOrder = savedOrdersTable.getSelectionModel().getSelectedItem();
-        if (selectedOrder == null) {
-            showAlert("No Selection", "Please select an order to edit");
-            return;
-        }
 
-        currentOrder = selectedOrder;
-        customerComboBox.setValue(currentOrder.getCustomer());
-        orderItemsTable.setItems(FXCollections.observableArrayList(currentOrder.getOrderItems()));
-        totalAmountLabel.setText(String.format("$%.2f", currentOrder.getTotalAmount()));
-    }
-*/
     @FXML
     public void updateOrder() {
         if (currentOrder.getOrderItems().isEmpty() || customerComboBox.getValue() == null) {

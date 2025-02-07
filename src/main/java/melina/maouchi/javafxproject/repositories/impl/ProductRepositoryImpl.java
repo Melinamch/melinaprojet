@@ -168,31 +168,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
 
-    /*
-    @Override
-    public List<Product> searchByKeyword(String keyword) {
-        List<Product> products = new ArrayList<>();
-        String sql = "SELECT * FROM products WHERE name LIKE ? OR category LIKE ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, "%" + keyword + "%");
-            stmt.setString(2, "%" + keyword + "%");
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    Product product = new Product();
-                    product.setId(rs.getInt("id"));
-                    product.setName(rs.getString("name"));
-                    product.setPrice(rs.getDouble("price"));
-                    product.setCategory(rs.getString("category"));
-                    product.setStock(rs.getInt("stock"));
-                    products.add(product);
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Error searching products", e);
-        }
-        return products;
-    }
-*/
+
     @Override
     public List<Product> findByCategory(String category) {
         List<Product> products = new ArrayList<>();
