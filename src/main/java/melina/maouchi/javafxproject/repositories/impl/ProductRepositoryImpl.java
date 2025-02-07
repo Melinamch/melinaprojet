@@ -121,7 +121,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         // Construire la requête SQL dynamiquement
         StringBuilder sqlQuery = new StringBuilder("SELECT * FROM products WHERE ");
         for (int i = 0; i < terms.length; i++) {
-            sqlQuery.append("(name LIKE ? OR category LIKE ?)");
+            sqlQuery.append("(category LIKE ? OR category LIKE ?)");
             if (i < terms.length - 1) {
                 sqlQuery.append(isAndSearch ? " AND " : " OR ");
             }
