@@ -229,7 +229,7 @@ public class OrderController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
+/*
     @FXML
     public void editOrder() {
         Order selectedOrder = savedOrdersTable.getSelectionModel().getSelectedItem();
@@ -243,7 +243,7 @@ public class OrderController {
         orderItemsTable.setItems(FXCollections.observableArrayList(currentOrder.getOrderItems()));
         totalAmountLabel.setText(String.format("$%.2f", currentOrder.getTotalAmount()));
     }
-
+*/
     @FXML
     public void updateOrder() {
         if (currentOrder.getOrderItems().isEmpty() || customerComboBox.getValue() == null) {
