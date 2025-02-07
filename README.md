@@ -1,6 +1,8 @@
 # JavaFX Project - Product Sales Management System
 
+Nom: MAOUCHI     Prenom: Melina
 This is a JavaFX-based application designed to manage product sales. It provides functionalities such as product catalog management, order processing, client management, and billing. The application connects to a PostgreSQL database for data storage and retrieval.
+
 
 ## Prerequisites
 

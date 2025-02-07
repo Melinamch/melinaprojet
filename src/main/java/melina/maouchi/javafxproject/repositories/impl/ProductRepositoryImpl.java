@@ -115,8 +115,20 @@ public class ProductRepositoryImpl implements ProductRepository {
         if (query == null || query.trim().isEmpty()) {
             return findAll(); // Retourne tous les produits si aucun mot-clé n'est donné
         }
+        String[] terms = query.split("\\s+(ET|OU)\\s+");
+        boolean isAndSearch = query.contains("ET");
 
-        // Remplace "ET" et "OU" par "AND" et "OR" pour SQL
+        // Construire la requête SQL dynamiquement
+        StringBuilder sqlQuery = new StringBuilder("SELECT * FROM products WHERE ");
+        for (int i = 0; i < terms.length; i++) {
+            sqlQuery.append("(name LIKE ? OR category LIKE ?)");
+            if (i < terms.length - 1) {
+                sqlQuery.append(isAndSearch ? " AND " : " OR ");
+            }
+        }
+
+        System.out.println("Generated SQL Query: " + sqlQuery);
+        /*Remplace "ET" et "OU" par "AND" et "OR" pour SQL
         String sqlQuery = "SELECT * FROM products WHERE ";
         String[] terms = query.split("\\s+(ET|OU)\\s+");
         StringBuilder sqlCondition = new StringBuilder();
@@ -129,8 +141,8 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
 
         sqlQuery += sqlCondition.toString();
-
-        try (PreparedStatement stmt = connection.prepareStatement(sqlQuery)) {
+*/
+        try (PreparedStatement stmt = connection.prepareStatement(sqlQuery.toString())) {
             int index = 1;
             for (String term : terms) {
                 stmt.setString(index++, "%" + term.trim() + "%");
