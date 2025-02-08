@@ -81,36 +81,12 @@ public class OrderController {
         if (productComboBox != null) setupProductComboBox();
         if (orderItemsTable != null) setupOrderItemsTable();
         if (savedOrdersTable != null) setupSavedOrdersTable();
-        selectedProductColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
-        selectedPriceColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrice()).asObject());
-        selectedQuantityColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getQuantity()).asObject());
 
 
-        // Listener pour détecter quand une commande est sélectionnée dans savedOrdersTable
-        savedOrdersTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                displayOrderDetails(newValue); // Afficher les détails de la commande
-            }
-        });
 
         loadInitialData();
     }
-    private void displayOrderDetails(Order selectedOrder) {
-        // Récupérer la liste des items de la commande (OrderItem)
-        List<OrderItem> orderItems = selectedOrder.getOrderItems();
 
-        // Créer une ObservableList pour contenir uniquement les produits
-        List<Product> products = new ArrayList<>();
-
-        // Extraire les produits à partir de chaque OrderItem
-        for (OrderItem item : orderItems) {
-            products.add(item.getProduct()); // Récupère le produit de chaque OrderItem
-        }
-
-        // Mettre à jour le tableau des produits de la commande
-        ObservableList<Product> productsList = FXCollections.observableArrayList(products);
-        selectedOrderItemsTable.setItems(productsList); // Afficher les produits dans le tableau
-    }
 
     private void setupProductsTable() {
         productIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
