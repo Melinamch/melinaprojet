@@ -7,6 +7,8 @@ public class Product {
     private double price;
     private String category;
     private int stock;
+    private int quantity;
+
 
 
     public Product() {
@@ -18,6 +20,7 @@ public class Product {
         this.price = price;
         this.category = category;
         this.stock = stock;
+        this.quantity = quantity;
     }
 
     public int getId() {
@@ -42,6 +45,12 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+    public int getQuantity() {
+        return quantity;
+    }
+    public void setQuantity(double price) {
+        this.quantity = quantity;
     }
 
     public String getCategory() {

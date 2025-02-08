@@ -69,6 +69,16 @@
             </columns>
             <VBox.vgrow><Priority fx:constant="ALWAYS"/></VBox.vgrow>
         </TableView>
+        <Label text="Selected Order Products" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+        <TableView fx:id="selectedOrderItemsTable" prefHeight="500" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+            <columns>
+                <TableColumn text="Product" fx:id="selectedProductColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+                <TableColumn text="Quantity" fx:id="selectedQuantityColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+                <TableColumn text="Price" fx:id="selectedPriceColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+            </columns>
+            <VBox.vgrow><Priority fx:constant="ALWAYS"/></VBox.vgrow>
+        </TableView>
+
 
     </VBox>
 </VBox>

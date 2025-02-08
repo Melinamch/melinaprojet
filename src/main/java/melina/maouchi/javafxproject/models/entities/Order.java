@@ -80,7 +80,7 @@ public class Order {
     }
 
     public List<OrderItem> getOrderItems() {
-        return orderItems;
+        return this.orderItems;
     }
 
     public void setOrderItems(List<OrderItem> orderItems) {
