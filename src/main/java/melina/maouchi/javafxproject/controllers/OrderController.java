@@ -297,22 +297,13 @@ public class OrderController {
         Order selectedOrder = savedOrdersTable.getSelectionModel().getSelectedItem();
 
         if (selectedOrder != null) {
-            System.out.println("Commande sélectionnée : " + selectedOrder.getId());
-            System.out.println("Articles de la commande : " + selectedOrder.getOrderItems().size());
-
-            orderItemsTable.setItems(FXCollections.observableArrayList(selectedOrder.getOrderItems()));
-
-            totalAmountLabel.setText(String.format("$%.2f", selectedOrder.getTotalAmount()));
-
-            customerComboBox.setValue(selectedOrder.getCustomer());
+            List<OrderItem> orderItems = selectedOrder.getOrderItems();
+            orderItemsTable.setItems(FXCollections.observableArrayList(orderItems));
         } else {
-            showAlert("Aucune sélection", "Veuillez sélectionner une commande pour voir ses détails");
+            showAlert("Aucune sélection", "Veuillez sélectionner une commande pour voir ses détails.");
         }
     }
 
-    @FXML
-    private void showAlert(Alert.AlertType alertType, String aucuneSélection, String s) {
-    }
 
 
     @FXML
