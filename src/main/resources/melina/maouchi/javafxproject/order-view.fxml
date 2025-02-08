@@ -44,7 +44,6 @@
                 <TableColumn text="Product" fx:id="orderProductColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
                 <TableColumn text="Quantity" fx:id="orderQuantityColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
                 <TableColumn text="Price" fx:id="orderPriceColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
-                <TableColumn fx:id="removeColumn" text="Remove" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
 
             </columns>
             <VBox.vgrow><Priority fx:constant="ALWAYS"/></VBox.vgrow>
@@ -57,7 +56,6 @@
             <Button text="Update" onAction="#updateOrderStatus" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
             <Button text="Cancel" onAction="#cancelOrder" style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
             <Button text="Delete" onAction="#deleteOrder" style="-fx-background-color: #E91E63; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
-            <Button text="Edit Order" onAction="#editOrder" style="-fx-background-color: #FFC107; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
 
         </HBox>
 

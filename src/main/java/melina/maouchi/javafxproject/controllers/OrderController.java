@@ -271,7 +271,7 @@ public class OrderController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
+/*
     @FXML
     public void updateOrder() {
         if (currentOrder.getOrderItems().isEmpty() || customerComboBox.getValue() == null) {
@@ -291,7 +291,14 @@ public class OrderController {
             showAlert("Error", "Failed to update order: " + e.getMessage());
         }
     }
-
+     @FXML
+    public void editOrder() {
+        Order selectedOrder = savedOrdersTable.getSelectionModel().getSelectedItem();
+        if (selectedOrder == null) {
+            showAlert("No Selection", "Please select an order to edit");
+            return;
+        }}
+*/
     @FXML
     public void deleteOrder() throws SQLException {
         Order selectedOrder = savedOrdersTable.getSelectionModel().getSelectedItem();
@@ -338,13 +345,7 @@ public class OrderController {
         }
     }
 
-    @FXML
-    public void editOrder() {
-        Order selectedOrder = savedOrdersTable.getSelectionModel().getSelectedItem();
-        if (selectedOrder == null) {
-            showAlert("No Selection", "Please select an order to edit");
-            return;
-        }}
+
 
 
     @FXML
