@@ -38,7 +38,7 @@ public class OrderController {
     @FXML private ComboBox<Customer> customerComboBox;
     @FXML private ComboBox<Product> productComboBox;
     @FXML private TextField quantityField;
-    @FXML private TableColumn<OrderItem, Void> removeColumn;
+
 
     @FXML private TableView<OrderItem> orderItemsTable;
     @FXML private Label totalAmountLabel;
@@ -74,38 +74,9 @@ public class OrderController {
         });
 
         loadInitialData();
-        removeColumn.setCellFactory(param -> {
-            TableCell<OrderItem, Void> cell = new TableCell<OrderItem, Void>() {
-                private final Button removeButton = new Button();
 
-                {
-                    // Chargement de l'icône de corbeille
-                    ImageView trashIcon = new ImageView(new Image("file:src/main/resources/images/trash_icon.png"));
-                    trashIcon.setFitHeight(16);
-                    trashIcon.setFitWidth(16);
-                    removeButton.setGraphic(trashIcon);
 
-                    // Action lors du clic sur la corbeille
-                    removeButton.setOnAction(event -> {
-                        OrderItem item = getTableRow().getItem();
-                        if (item != null) {
-                            removeOrderItem(item);
-                        }
-                    });
-                }
 
-                @Override
-                protected void updateItem(Void item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty) {
-                        setGraphic(null);
-                    } else {
-                        setGraphic(removeButton);
-                    }
-                }
-            };
-            return cell;
-        });
     }
     private void setupProductsTable() {
         productIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));

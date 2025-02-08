@@ -1,9 +1,11 @@
 package melina.maouchi.javafxproject.controllers;
 
 
+import javafx.scene.layout.VBox;
 import melina.maouchi.javafxproject.HelloApplication;
 import melina.maouchi.javafxproject.models.entities.Invoice;
 import melina.maouchi.javafxproject.models.entities.Order;
+import melina.maouchi.javafxproject.models.entities.OrderItem;
 import melina.maouchi.javafxproject.repositories.impl.CustomerRepositoryImpl;
 import melina.maouchi.javafxproject.repositories.impl.InvoiceRepositoryImpl;
 import melina.maouchi.javafxproject.repositories.impl.OrderRepositoryImpl;
@@ -19,9 +21,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.StringConverter;
 
+import java.security.cert.PolicyNode;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+
+
 
 public class InvoiceController {
     private final InvoiceRepository invoiceRepository;
@@ -45,6 +50,7 @@ public class InvoiceController {
     @FXML private TableColumn<Invoice, Integer> orderIdColumn;
     @FXML private TableColumn<Invoice, LocalDate> invoiceDateColumn;
     @FXML private TableColumn<Invoice, Double> totalAmountColumn;
+    @FXML private VBox invoiceItemsVBox;
 
     @FXML
     public void initialize() {
@@ -97,16 +103,48 @@ public class InvoiceController {
     public void generateInvoice() {
         Order selectedOrder = orderComboBox.getValue();
         if (selectedOrder != null) {
+            // Créer la facture
             Invoice invoice = new Invoice();
             invoice.setOrder(selectedOrder);
             invoice.setInvoiceDate(invoiceDatePicker.getValue());
             invoice.setTotalAmount(selectedOrder.getTotalAmount());
 
+            // Ajouter la facture dans la base de données
             invoiceRepository.add(invoice);
+
+            // Afficher les articles de la commande dans la vue de la facture
+            displayOrderItems(selectedOrder);
+
+            // Charger la liste des factures
             loadInvoices();
         }
     }
+    private void displayOrderItems(Order order) {
+        // Crée une TableView pour afficher les articles
+        TableView<OrderItem> itemsTable = new TableView<>();
 
+        // Définir les colonnes pour le nom de l'article, le prix et la quantité
+        TableColumn<OrderItem, String> itemNameColumn = new TableColumn<>("Item");
+        TableColumn<OrderItem, Double> itemPriceColumn = new TableColumn<>("Price");
+        TableColumn<OrderItem, Integer> itemQuantityColumn = new TableColumn<>("Quantity");
+
+        // Assurez-vous que les colonnes récupèrent les bonnes valeurs des objets OrderItem
+        itemNameColumn.setCellValueFactory(cellData ->
+                new SimpleObjectProperty<>(cellData.getValue().getProduct().getName()));
+        itemPriceColumn.setCellValueFactory(cellData ->
+                new SimpleObjectProperty<>(cellData.getValue().getProduct().getPrice()));
+        itemQuantityColumn.setCellValueFactory(cellData ->
+                new SimpleObjectProperty<>(cellData.getValue().getQuantity()));
+
+        // Ajouter les colonnes à la TableView
+        itemsTable.getColumns().addAll(itemNameColumn, itemPriceColumn, itemQuantityColumn);
+
+        // Ajouter les articles de la commande à la table
+        itemsTable.setItems(FXCollections.observableArrayList(order.getItems()));
+
+        // Ajouter la TableView au VBox dans l'interface utilisateur
+        invoiceItemsVBox.getChildren().add(itemsTable);  // Utilise le conteneur correct du FXML
+    }
     @FXML
     public void updateInvoice() {
         Invoice selectedInvoice = invoicesTable.getSelectionModel().getSelectedItem();

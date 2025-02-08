@@ -89,8 +89,9 @@ public class Order {
     }
 
     public void calculateTotalAmount() {
-        this.totalAmount = orderItems.stream()
-                .mapToDouble(OrderItem::calculatePrice)
-                .sum();
+
+    }
+
+    public OrderItem getItems() {
     }
 }

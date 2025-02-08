@@ -47,6 +47,15 @@
             </columns>
             <VBox.vgrow><Priority fx:constant="ALWAYS"/></VBox.vgrow>
         </TableView>
+        <TableView fx:id="orderItemsTable" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+            <columns>
+                <TableColumn text="Item" fx:id="itemNameColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+                <TableColumn text="Price" fx:id="itemPriceColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+                <TableColumn text="Quantity" fx:id="itemQuantityColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+            </columns>
+            <VBox.vgrow><Priority fx:constant="ALWAYS"/></VBox.vgrow>
+        </TableView>
+
 
         <Button text="Delete Invoice" onAction="#deleteInvoice" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
     </VBox>
