@@ -1,7 +1,6 @@
 package melina.maouchi.javafxproject.controllers;
 
 import melina.maouchi.javafxproject.HelloApplication;
-import java.util.ArrayList;
 
 import melina.maouchi.javafxproject.models.entities.*;
 import melina.maouchi.javafxproject.models.enums.OrderStatus;
@@ -19,12 +18,6 @@ import melina.maouchi.javafxproject.repositories.impl.ProductRepositoryImpl;
 import melina.maouchi.javafxproject.repositories.interfaces.CustomerRepository;
 import melina.maouchi.javafxproject.repositories.interfaces.OrderRepository;
 import melina.maouchi.javafxproject.repositories.interfaces.ProductRepository;
-import javafx.collections.ObservableList;
-
-
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -54,19 +47,10 @@ public class OrderController {
     @FXML private TableColumn<Order, OrderStatus> orderStatusColumn;
     @FXML private TableColumn<Order, Double> orderTotalColumn;
 
-    @FXML
-    private TableView<Product> selectedOrderItemsTable;
-    @FXML
-    private TableColumn<Product, String> selectedProductColumn;
-    @FXML
-    private TableColumn<Product, Integer> selectedQuantityColumn;
-    @FXML
-    private TableColumn<Product, Double> selectedPriceColumn;
-
-
     private Order currentOrder = new Order();
 
-    public OrderController() {
+    public OrderController(TableView<Order> savedOrdersTable) {
+        this.savedOrdersTable = savedOrdersTable;
         this.customerRepository = new CustomerRepositoryImpl();
         this.productRepository = new ProductRepositoryImpl();
         this.orderRepository = new OrderRepositoryImpl(customerRepository, productRepository);
@@ -81,13 +65,14 @@ public class OrderController {
         if (productComboBox != null) setupProductComboBox();
         if (orderItemsTable != null) setupOrderItemsTable();
         if (savedOrdersTable != null) setupSavedOrdersTable();
-
-
+        savedOrdersTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                showOrderDetails();
+            }
+        });
 
         loadInitialData();
     }
-
-
     private void setupProductsTable() {
         productIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -321,7 +306,6 @@ public class OrderController {
     }
 
 
-
     @FXML
     public void goToProducts() {
         HelloApplication.navigateTo("products-view.fxml");
@@ -340,13 +324,5 @@ public class OrderController {
     @FXML
     public void goToInvoices() {
         HelloApplication.navigateTo("invoice-view.fxml");
-    }
-
-    public TableView<Product> getSelectedOrderItemsTable() {
-        return selectedOrderItemsTable;
-    }
-
-    public void setSelectedOrderItemsTable(TableView<Product> selectedOrderItemsTable) {
-        this.selectedOrderItemsTable = selectedOrderItemsTable;
     }
 }

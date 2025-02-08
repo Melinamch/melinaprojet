@@ -38,7 +38,6 @@
             <Button text="Add Item" onAction="#addOrderItem" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
         </HBox>
 
-
         <TableView fx:id="orderItemsTable" prefHeight="1000" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
             <columns>
                 <TableColumn text="Product" fx:id="orderProductColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
@@ -59,17 +58,16 @@
         </HBox>
 
         <Label text="Saved Orders" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
-
-        <Label text="Selected Order Products" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
-        <TableView fx:id="selectedOrderItemsTable" prefHeight="500" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+        <TableView fx:id="savedOrdersTable" prefHeight="1000" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
             <columns>
-                <TableColumn text="Product" fx:id="selectedProductColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
-                <TableColumn text="Quantity" fx:id="selectedQuantityColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
-                <TableColumn text="Price" fx:id="selectedPriceColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+                <TableColumn text="Order ID" fx:id="orderIdColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+                <TableColumn text="Customer" fx:id="orderCustomerColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+                <TableColumn text="Date" fx:id="orderDateColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+                <TableColumn text="Status" fx:id="orderStatusColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+                <TableColumn text="Total" fx:id="orderTotalColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
             </columns>
             <VBox.vgrow><Priority fx:constant="ALWAYS"/></VBox.vgrow>
         </TableView>
-
 
     </VBox>
 </VBox>
