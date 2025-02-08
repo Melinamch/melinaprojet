@@ -304,6 +304,13 @@ public class OrderController {
         }
     }
 
+    @FXML
+    public void editOrder() {
+        Order selectedOrder = savedOrdersTable.getSelectionModel().getSelectedItem();
+        if (selectedOrder == null) {
+            showAlert("No Selection", "Please select an order to edit");
+            return;
+        }}
 
 
     @FXML
