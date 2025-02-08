@@ -1,0 +1,50 @@
+@startuml
+
+' Définition des classes
+class Product {
+    + id: int
+    + name: String
+    + price: double
+    + category: String
+    + stock: int
+    + status: String
+}
+
+class Customer {
+    + id: int
+    + first_name: String
+    + last_name: String
+    + email: String
+    + phone: String
+}
+
+class Order {
+    + id: int
+    + customer_id: int
+    + order_date: Date
+    + status: String
+    + total_amount: double
+}
+
+class OrderItem {
+    + id: int
+    + order_id: int
+    + product_id: int
+    + quantity: int
+    + price: double
+}
+
+class Invoice {
+    + id: int
+    + order_id: int
+    + invoice_date: Date
+    + total_amount: double
+}
+
+' Relations entre les classes
+Customer "1" -- "0..*" Order : places
+Order "1" -- "0..*" OrderItem : contains
+Product "1" -- "0..*" OrderItem : included_in
+Order "1" -- "1" Invoice : generates
+
+@enduml

@@ -64,6 +64,12 @@ public class OrderController {
         if (productComboBox != null) setupProductComboBox();
         if (orderItemsTable != null) setupOrderItemsTable();
         if (savedOrdersTable != null) setupSavedOrdersTable();
+        savedOrdersTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                showOrderDetails();
+            }
+        });
+
         loadInitialData();
     }
     private void setupProductsTable() {
@@ -285,6 +291,26 @@ public class OrderController {
         } else {
             showAlert("No Selection", "Please select an order to cancel");
         }
+    }
+    @FXML
+    public void showOrderDetails() {
+        Order selectedOrder = savedOrdersTable.getSelectionModel().getSelectedItem();
+
+        if (selectedOrder != null) {
+            // Mettre à jour la table des items avec les produits de la commande sélectionnée
+            orderItemsTable.setItems(FXCollections.observableArrayList(selectedOrder.getOrderItems()));
+
+            // Mettre à jour l'affichage du montant total
+            totalAmountLabel.setText(String.format("$%.2f", selectedOrder.getTotalAmount()));
+
+            // Sélectionner le client correspondant dans le ComboBox (optionnel)
+            customerComboBox.setValue(selectedOrder.getCustomer());
+        } else {
+            showAlert(Alert.AlertType.WARNING, "Aucune sélection", "Veuillez sélectionner une commande pour voir ses détails.");
+        }
+    }
+
+    private void showAlert(Alert.AlertType alertType, String aucuneSélection, String s) {
     }
 
 
