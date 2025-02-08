@@ -91,6 +91,10 @@ public class Order {
     public void calculateTotalAmount() {
 
     }
-
+    public OrderItem getItems() {
+        OrderItem item = new OrderItem();  // Crée un objet OrderItem
+        // Configure l'objet OrderItem ici si nécessaire
+        return item;  // Retourne l'objet
+    }
 
 }
