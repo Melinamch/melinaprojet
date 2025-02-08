@@ -49,8 +49,7 @@ public class OrderController {
 
     private Order currentOrder = new Order();
 
-    public OrderController(TableView<Order> savedOrdersTable) {
-        this.savedOrdersTable = savedOrdersTable;
+    public OrderController() {
         this.customerRepository = new CustomerRepositoryImpl();
         this.productRepository = new ProductRepositoryImpl();
         this.orderRepository = new OrderRepositoryImpl(customerRepository, productRepository);
@@ -304,6 +303,7 @@ public class OrderController {
             showAlert("Aucune sélection", "Veuillez sélectionner une commande pour voir ses détails.");
         }
     }
+
 
 
     @FXML

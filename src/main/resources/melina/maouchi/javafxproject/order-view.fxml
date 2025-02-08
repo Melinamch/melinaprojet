@@ -38,6 +38,7 @@
             <Button text="Add Item" onAction="#addOrderItem" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
         </HBox>
 
+
         <TableView fx:id="orderItemsTable" prefHeight="1000" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
             <columns>
                 <TableColumn text="Product" fx:id="orderProductColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
