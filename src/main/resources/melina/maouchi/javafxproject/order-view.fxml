@@ -44,6 +44,8 @@
                 <TableColumn text="Product" fx:id="orderProductColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
                 <TableColumn text="Quantity" fx:id="orderQuantityColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
                 <TableColumn text="Price" fx:id="orderPriceColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+                <TableColumn fx:id="removeColumn" text="Remove" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+
             </columns>
             <VBox.vgrow><Priority fx:constant="ALWAYS"/></VBox.vgrow>
         </TableView>
