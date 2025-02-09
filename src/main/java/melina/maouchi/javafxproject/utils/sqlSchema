@@ -1,6 +1,15 @@
-CREATE DATABASE java_fx_project;
 
--- Products Table
+CREATE DATABASE melina_project
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'French_France.1252'
+    LC_CTYPE = 'French_France.1252'
+    LOCALE_PROVIDER = 'libc'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
 CREATE TABLE products (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -57,22 +66,37 @@ VALUES
 ('Laptop', 999.99, 'Electronics', 50),
 ('Smartphone', 599.99, 'Electronics', 150),
 ('Headphones', 199.99, 'Accessories', 200),
-('Keyboard', 49.99, 'Accessories', 300);
+('Keyboard', 49.99, 'Accessories', 300),
+('Car Battery', 120.00, 'Automotive', 60),
+('Car Tire', 80.00, 'Automotive', 120),
+('Engine Oil', 30.00, 'Automotive', 200),
+('Watch', 150.00, 'Accessories', 100),
+('Bracelet', 25.00, 'Accessories', 150),
+('Sunglasses', 50.00, 'Accessories', 80),
+('Lipstick', 19.99, 'Beauty', 120),
+('Foundation', 39.99, 'Beauty', 60),
+('Perfume', 69.99, 'Beauty', 90),
+('Video Game Console', 399.99, 'Games', 50),
+('Game Controller', 59.99, 'Games', 200),
+('FIFA 2025', 49.99, 'Games', 300);
 
 -- Insert customers
 INSERT INTO customers (first_name, last_name, email, phone)
 VALUES
 ('melina', 'maouchi', 'melinamaouchi@gmail.com', '123-456-7890'),
-('Jane', 'yefsah', 'jane.yefsah@gmail.com', '234-567-8901'),
-('vanessa', 'fadili', 'vanessa.fadili@gmail.com', '345-678-9012'),
-('william', 'sail', 'william.sail@gmail.com', '456-789-0123');
+('Jane', 'Robert', 'janerobert@gmail.com', '234-567-8901'),
+('vanessa', 'fadili', 'vanessafadili@gmail.com', '345-678-9012'),
+('william', 'sail', 'williamsail@gmail.com', '456-789-0123'),
+('artur', 'bienvenu', 'arturbienvenu@gmail.com', '466-789-0123'),
+('delphine', 'olivier', 'delphineolivie@gmail.com', '456-009-0123'),
+('nicole', 'Richard', 'nicole richard@gmail.com', '456-799-0123');
 
 -- Insert orders
 
 INSERT INTO orders (customer_id, order_date, status, total_amount)
 VALUES
 (1, '2025-01-15 10:30:00', 'Pending', 1599.97),
-(2, '2025-01-20 14:45:00', 'Shipped', 1199.98),
+(2, '2025-01-20 14:45:00', 'Validated', 1199.98),
 (3, '2025-02-01 09:00:00', 'Delivered', 449.97),
 (4, '2025-02-05 16:20:00', 'Cancelled', 1499.98);
 
