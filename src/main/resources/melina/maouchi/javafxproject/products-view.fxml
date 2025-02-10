@@ -44,8 +44,9 @@
         </HBox>
         <HBox spacing="10">
             <TextField fx:id="searchField" promptText="Rechercher un produit..." />
-            <Button text="Rechercher" onAction="#onSearch"/>
+            <Button text="Search" onAction="#onSearch" />
         </HBox>
+
 
         <TableView fx:id="productTable" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
             <columns>

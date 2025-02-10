@@ -61,6 +61,13 @@ ALTER TABLE customers ADD CONSTRAINT unique_email UNIQUE (email);
 CREATE INDEX idx_order_customer ON orders(customer_id);
 CREATE INDEX idx_order_status ON orders(status);
 
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+	name VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(20) NOT NULL CHECK (role IN ('admin', 'utilisateur'))
+);
+
 INSERT INTO products (name, price, category, stock)
 VALUES
 ('Laptop', 999.99, 'Electronics', 50),
@@ -117,3 +124,9 @@ VALUES
 (2, 1199.98),
 (3, 449.97),
 (4, 1499.98);
+
+
+
+INSERT INTO users (name, password, role) VALUES
+('admin1', 'adminpass', 'admin'),
+('user1', 'userpass', 'utilisateur');

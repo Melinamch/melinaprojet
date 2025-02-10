@@ -1,5 +1,6 @@
 package melina.maouchi.javafxproject.controllers;
 
+import javafx.collections.ObservableList;
 import melina.maouchi.javafxproject.HelloApplication;
 
 import melina.maouchi.javafxproject.models.entities.*;
@@ -21,6 +22,9 @@ import melina.maouchi.javafxproject.repositories.interfaces.CustomerRepository;
 import melina.maouchi.javafxproject.repositories.interfaces.OrderRepository;
 import melina.maouchi.javafxproject.repositories.interfaces.ProductRepository;
 
+
+
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
@@ -39,7 +43,6 @@ public class OrderController {
     @FXML private ComboBox<Product> productComboBox;
     @FXML private TextField quantityField;
 
-
     @FXML private TableView<OrderItem> orderItemsTable;
     @FXML private Label totalAmountLabel;
 
@@ -49,6 +52,9 @@ public class OrderController {
     @FXML private TableColumn<Order, LocalDate> orderDateColumn;
     @FXML private TableColumn<Order, OrderStatus> orderStatusColumn;
     @FXML private TableColumn<Order, Double> orderTotalColumn;
+    @FXML
+    private TextField searchField;
+
 
     private Order currentOrder = new Order();
 
@@ -56,9 +62,7 @@ public class OrderController {
         this.customerRepository = new CustomerRepositoryImpl();
         this.productRepository = new ProductRepositoryImpl();
         this.orderRepository = new OrderRepositoryImpl(customerRepository, productRepository);
-
     }
-
 
     @FXML
     public void initialize() {
@@ -67,16 +71,12 @@ public class OrderController {
         if (productComboBox != null) setupProductComboBox();
         if (orderItemsTable != null) setupOrderItemsTable();
         if (savedOrdersTable != null) setupSavedOrdersTable();
+        loadInitialData();
         savedOrdersTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 showOrderDetails();
             }
         });
-
-        loadInitialData();
-
-
-
     }
     private void setupProductsTable() {
         productIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -185,6 +185,9 @@ public class OrderController {
         } catch (NumberFormatException e) {
             showAlert("Invalid Input", "Please enter a valid numeric quantity");
         }
+        System.out.println("Total Amount: " + currentOrder.getTotalAmount());
+        totalAmountLabel.setText(String.format("$%.2f", currentOrder.getTotalAmount()));
+
     }
 
     @FXML
@@ -228,11 +231,9 @@ public class OrderController {
             selectedOrder.setStatus(OrderStatus.VALIDATED);
             orderRepository.update(selectedOrder);
             refreshSavedOrdersTable();
-
         } else {
             showAlert("No Selection", "Please select an order to update");
         }
-
     }
 
     private void showAlert(String title, String message) {
@@ -242,7 +243,21 @@ public class OrderController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-/*
+
+    @FXML
+    public void editOrder() {
+        Order selectedOrder = savedOrdersTable.getSelectionModel().getSelectedItem();
+        if (selectedOrder == null) {
+            showAlert("No Selection", "Please select an order to edit");
+            return;
+        }
+
+        currentOrder = selectedOrder;
+        customerComboBox.setValue(currentOrder.getCustomer());
+        orderItemsTable.setItems(FXCollections.observableArrayList(currentOrder.getOrderItems()));
+        totalAmountLabel.setText(String.format("$%.2f", currentOrder.getTotalAmount()));
+    }
+
     @FXML
     public void updateOrder() {
         if (currentOrder.getOrderItems().isEmpty() || customerComboBox.getValue() == null) {
@@ -262,14 +277,7 @@ public class OrderController {
             showAlert("Error", "Failed to update order: " + e.getMessage());
         }
     }
-     @FXML
-    public void editOrder() {
-        Order selectedOrder = savedOrdersTable.getSelectionModel().getSelectedItem();
-        if (selectedOrder == null) {
-            showAlert("No Selection", "Please select an order to edit");
-            return;
-        }}
-*/
+
     @FXML
     public void deleteOrder() throws SQLException {
         Order selectedOrder = savedOrdersTable.getSelectionModel().getSelectedItem();
@@ -283,13 +291,14 @@ public class OrderController {
 
 
     @FXML
-    public void removeOrderItem(OrderItem item) {
-        if (item != null) {
-            currentOrder.removeOrderItem(item);
+    public void removeOrderItem() {
+        OrderItem selectedItem = orderItemsTable.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            currentOrder.removeOrderItem(selectedItem);
             orderItemsTable.setItems(FXCollections.observableArrayList(currentOrder.getOrderItems()));
             totalAmountLabel.setText(String.format("$%.2f", currentOrder.getTotalAmount()));
         } else {
-            showAlert("No Item Selected", "Please select an item to remove");
+            showAlert("No Selection", "Please select an item to remove");
         }
     }
 
@@ -305,6 +314,12 @@ public class OrderController {
         }
     }
     @FXML
+    public void onSearch() {
+        String query = searchField.getText().trim();
+        ObservableList<Product> results = FXCollections.observableArrayList(productRepository.searchProducts(query));
+        productsTable.setItems(results);
+    }
+    @FXML
     public void showOrderDetails() {
         Order selectedOrder = savedOrdersTable.getSelectionModel().getSelectedItem();
 
@@ -315,9 +330,6 @@ public class OrderController {
             showAlert("Aucune sélection", "Veuillez sélectionner une commande pour voir ses détails.");
         }
     }
-
-
-
 
     @FXML
     public void goToProducts() {

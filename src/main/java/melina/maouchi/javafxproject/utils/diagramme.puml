@@ -41,10 +41,18 @@ class Invoice {
     + total_amount: double
 }
 
+class User {
+    + id: int
+    + name: String
+    + password: String
+    + role: String
+}
+
 ' Relations entre les classes
 Customer "1" -- "0..*" Order : places
 Order "1" -- "0..*" OrderItem : contains
 Product "1" -- "0..*" OrderItem : included_in
 Order "1" -- "1" Invoice : generates
+User "1" -- "0..*" Order : manages
 
 @enduml

@@ -32,14 +32,14 @@ public class LoginController {
         String role = loginRepository.authenticateUser(username, password);
 
         if (role != null) {
-            showAlert("Succès", "Connexion réussie en tant que " + role + " !");
+            showAlert("Succès", "Login successfully as " + role + " !");
             if ("admin".equals(role)) {
                 HelloApplication.navigateTo("products-view.fxml");
             } else {
                 HelloApplication.navigateTo("user-view.fxml");
             }
         } else {
-            showAlert("Erreur", "Identifiants incorrects !");
+            showAlert("Erreur", "Incorrect identifiers !");
         }
     }
 

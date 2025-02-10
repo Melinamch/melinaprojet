@@ -8,12 +8,12 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="melina.maouchi.javafxproject.controllers.LoginController">
     <children>
         <VBox alignment="CENTER" spacing="15" layoutX="150" layoutY="100">
-            <Label text="Connexion" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+            <Label text="Login" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
 
-            <TextField fx:id="usernameField" promptText="Nom d'utilisateur" maxWidth="250"/>
-            <PasswordField fx:id="passwordField" promptText="Mot de passe" maxWidth="250"/>
+            <TextField fx:id="usernameField" promptText="user name" maxWidth="250"/>
+            <PasswordField fx:id="passwordField" promptText="Password" maxWidth="250"/>
 
-            <Button fx:id="loginButton" text="Se connecter" onAction="#handleLogin"
+            <Button fx:id="loginButton" text="Login" onAction="#handleLogin"
                     style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-font-size: 14px;"/>
 
             <Label fx:id="errorLabel" text="" style="-fx-text-fill: red;" visible="false"/>

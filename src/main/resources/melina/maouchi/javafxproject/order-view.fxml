@@ -30,35 +30,21 @@
             <VBox.vgrow><Priority fx:constant="ALWAYS"/></VBox.vgrow>
         </TableView>
 
-        <Label text="Current Order" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
-        <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
-            <ComboBox fx:id="customerComboBox" promptText="Select Customer" style="-fx-font-size: 14px; -fx-pref-width: 150; -fx-background-color: #ecf0f1; -fx-border-radius: 3;"/>
-            <ComboBox fx:id="productComboBox" promptText="Select Product" style="-fx-font-size: 14px; -fx-pref-width: 150; -fx-background-color: #ecf0f1; -fx-border-radius: 3;"/>
-            <TextField fx:id="quantityField" promptText="Quantity" style="-fx-font-size: 14px; -fx-pref-width: 100; -fx-background-color: #ecf0f1; -fx-border-radius: 3;"/>
-            <Button text="Add Item" onAction="#addOrderItem" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
-        </HBox>
+        <ComboBox fx:id="customerComboBox" promptText="Select Customer"
+                  style="-fx-font-size: 14px; -fx-pref-width: 150; -fx-background-color: #ecf0f1; -fx-border-radius: 3;"
+                  editable="false" disable="true"/>
+        <ComboBox fx:id="productComboBox" promptText="Select Product"
+                  style="-fx-font-size: 14px; -fx-pref-width: 150; -fx-background-color: #ecf0f1; -fx-border-radius: 3;"
+                  editable="false" disable="true"/>
 
 
-        <TableView fx:id="orderItemsTable" prefHeight="1000" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
-            <columns>
-                <TableColumn text="Product" fx:id="orderProductColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
-                <TableColumn text="Quantity" fx:id="orderQuantityColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
-                <TableColumn text="Price" fx:id="orderPriceColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
-
-            </columns>
-            <VBox.vgrow><Priority fx:constant="ALWAYS"/></VBox.vgrow>
-        </TableView>
 
         <HBox spacing="10" style="-fx-alignment: center;">
-            <Label text="Total Amount:" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
-            <Label fx:id="totalAmountLabel" text="0.00" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
-            <Button text="Create Order" onAction="#createOrder" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
             <Button text="Update" onAction="#updateOrderStatus" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
             <Button text="Cancel" onAction="#cancelOrder" style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
             <Button text="Delete" onAction="#deleteOrder" style="-fx-background-color: #E91E63; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
 
         </HBox>
-
         <Label text="Saved Orders" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
         <TableView fx:id="savedOrdersTable" prefHeight="1000" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
             <columns>

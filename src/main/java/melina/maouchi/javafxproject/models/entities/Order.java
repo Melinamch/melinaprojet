@@ -89,7 +89,9 @@ public class Order {
     }
 
     public void calculateTotalAmount() {
-
+        this.totalAmount = orderItems.stream()
+                .mapToDouble(OrderItem::calculatePrice)
+                .sum();
     }
     public OrderItem getItems() {
         OrderItem item = new OrderItem();  // Crée un objet OrderItem
