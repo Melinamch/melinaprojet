@@ -37,6 +37,14 @@
                   style="-fx-font-size: 14px; -fx-pref-width: 150; -fx-background-color: #ecf0f1; -fx-border-radius: 3;"
                   editable="false" disable="true"/>
 
+        <TableView fx:id="orderItemsTable" prefHeight="1000" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+            <columns>
+                <TableColumn text="Product" fx:id="orderProductColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+                <TableColumn text="Quantity" fx:id="orderQuantityColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+                <TableColumn text="Price" fx:id="orderPriceColumn" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
+            </columns>
+            <VBox.vgrow><Priority fx:constant="ALWAYS"/></VBox.vgrow>
+        </TableView>
 
 
         <HBox spacing="10" style="-fx-alignment: center;">
