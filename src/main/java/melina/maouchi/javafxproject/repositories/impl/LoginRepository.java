@@ -3,7 +3,7 @@ package melina.maouchi.javafxproject.repositories.impl;
 
 
 import melina.maouchi.javafxproject.config.DatabaseConnection;
-
+import melina.maouchi.javafxproject.models.entities.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
