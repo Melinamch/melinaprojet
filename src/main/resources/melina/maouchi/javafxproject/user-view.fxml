@@ -12,6 +12,7 @@
 <VBox spacing="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="melina.maouchi.javafxproject.controllers.OrderController" style="-fx-background-color: #f8f9fa;">
     <HBox style="-fx-background-color: #2c3e50; -fx-padding: 15; -fx-spacing: 20;">
         <Label text="Order" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #ecf0f1;"/>
+        <Button fx:id="logoutButton" text="LogOut" onAction="#handleLogout" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
         <Region HBox.hgrow="ALWAYS"/>
     </HBox>
 
@@ -54,6 +55,8 @@
             <Label text="Total Amount:" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
             <Label fx:id="totalAmountLabel" text="0.00" style="-fx-font-size: 14px; -fx-text-fill: #34495e;"/>
             <Button text="Create Order" onAction="#createOrder" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
+            <Button text="remove item" onAction="#removeOrderItem" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 3;"/>
+
         </HBox>
 
         <Label text="Saved Orders" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>

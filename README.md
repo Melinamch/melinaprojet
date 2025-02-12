@@ -50,20 +50,24 @@ The project is organized as follows:
 JavaFx-project/
 ├── out/
 │   ├── artifacts/
-│   │   └── JavaFx_project_jar2/
-│   │       └── JavaFx-project.jar   # JAR file                          
+│   │   
+│   │                                  
 ├── src/
 │   ├── main/
-│   │   ├── java/                  # Java source files
-│   │   │   ├── com.wora.javafxproject/
-│   │   │   │   ├── config/   
-│   │   │   │   ├── controllers/   
-│   │   │   │   ├── models/
-│   │   │   │   ├── utils/              
-│   │   │   │   ├── repositories/      
-│   │   └── resources/
-│   │         └── views/            
-│   └── test/                      
+│       ├── java/                  
+│       │   ├── melina.maouchi.javafxproject/
+│       │   │   ├── config/   
+│       │   │   ├── controllers/ 
+│               ├── models /   
+│       │   │   ├── interfaces/
+│       │   │   ├── utils/              
+│       │   │         
+│       └── resources/
+│            └── views/            
+│                        
 ├── target/
+│    ├── Melina.jar
+│    ├── Melina-jar-with-dependecies
+│     
 ├── pom.xml                         
 └── README.md                      

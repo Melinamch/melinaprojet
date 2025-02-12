@@ -1,3 +1,6 @@
+-- Database: melina_project
+
+-- DROP DATABASE IF EXISTS melina_project;
 
 CREATE DATABASE melina_project
     WITH
@@ -9,6 +12,8 @@ CREATE DATABASE melina_project
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
+
+
 
 CREATE TABLE products (
     id SERIAL PRIMARY KEY,
@@ -61,13 +66,6 @@ ALTER TABLE customers ADD CONSTRAINT unique_email UNIQUE (email);
 CREATE INDEX idx_order_customer ON orders(customer_id);
 CREATE INDEX idx_order_status ON orders(status);
 
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-	name VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    role VARCHAR(20) NOT NULL CHECK (role IN ('admin', 'utilisateur'))
-);
-
 INSERT INTO products (name, price, category, stock)
 VALUES
 ('Laptop', 999.99, 'Electronics', 50),
@@ -102,11 +100,11 @@ VALUES
 
 INSERT INTO orders (customer_id, order_date, status, total_amount)
 VALUES
-(1, '2025-01-15 10:30:00', 'Pending', 1599.97),
-(2, '2025-01-20 14:45:00', 'Validated', 1199.98),
-(3, '2025-02-01 09:00:00', 'Delivered', 449.97),
-(4, '2025-02-05 16:20:00', 'Cancelled', 1499.98);
-
+(1, '2025-01-15 10:30:00', 'PENDING', 1599.97),
+(2, '2025-01-20 14:45:00', 'VALIDATED', 1199.98),
+(3, '2025-02-01 09:00:00', 'DELIVERED', 449.97),
+(4, '2025-02-05 16:20:00', 'CANCELED', 1499.98)
+;
 
 -- Insert order items
 INSERT INTO order_items (order_id, product_id, quantity, price)
@@ -125,7 +123,12 @@ VALUES
 (3, 449.97),
 (4, 1499.98);
 
-
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+	name VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(20) NOT NULL CHECK (role IN ('admin', 'utilisateur'))
+);
 
 INSERT INTO users (name, password, role) VALUES
 ('admin1', 'adminpass', 'admin'),

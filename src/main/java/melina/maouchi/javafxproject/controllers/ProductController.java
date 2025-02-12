@@ -144,6 +144,19 @@ public class ProductController {
         ObservableList<Product> results = FXCollections.observableArrayList(productRepository.searchProducts(query));
         productTable.setItems(results);
     }
+    @FXML
+    private void handleLogout() {
+        try {
+
+            // Utiliser la méthode navigateTo pour charger la page de connexion
+            HelloApplication.navigateTo("login-view.fxml");
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 
     @FXML
     public void goToProducts() {

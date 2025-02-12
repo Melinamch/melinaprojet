@@ -5,8 +5,6 @@ import melina.maouchi.javafxproject.HelloApplication;
 
 import melina.maouchi.javafxproject.models.entities.*;
 import melina.maouchi.javafxproject.models.enums.OrderStatus;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.Image;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -33,7 +31,8 @@ public class OrderController {
     private final OrderRepository orderRepository;
     private final CustomerRepository customerRepository;
     private final ProductRepository productRepository;
-
+    @FXML
+    private Button logoutButton;
     @FXML private TableView<Product> productsTable;
     @FXML private TableColumn<Product, Integer> productIdColumn;
     @FXML private TableColumn<Product, String> productNameColumn;
@@ -258,25 +257,7 @@ public class OrderController {
         totalAmountLabel.setText(String.format("$%.2f", currentOrder.getTotalAmount()));
     }
 
-    @FXML
-    public void updateOrder() {
-        if (currentOrder.getOrderItems().isEmpty() || customerComboBox.getValue() == null) {
-            showAlert("Incomplete Order", "Please select a customer and add at least one item");
-            return;
-        }
 
-        try {
-            currentOrder.setCustomer(customerComboBox.getValue());
-            currentOrder.calculateTotalAmount();
-
-            orderRepository.update(currentOrder);
-            refreshSavedOrdersTable();
-            resetCurrentOrder();
-
-        } catch (Exception e) {
-            showAlert("Error", "Failed to update order: " + e.getMessage());
-        }
-    }
 
     @FXML
     public void deleteOrder() throws SQLException {
@@ -330,6 +311,20 @@ public class OrderController {
             showAlert("Aucune sélection", "Veuillez sélectionner une commande pour voir ses détails.");
         }
     }
+    @FXML
+    private void handleLogout() {
+        try {
+
+            // Utiliser la méthode navigateTo pour charger la page de connexion
+            HelloApplication.navigateTo("login-view.fxml");
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
 
     @FXML
     public void goToProducts() {
@@ -350,4 +345,6 @@ public class OrderController {
     public void goToInvoices() {
         HelloApplication.navigateTo("invoice-view.fxml");
     }
+
 }
+

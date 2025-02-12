@@ -79,8 +79,7 @@
         </configuration>
       </plugin>
 
-      <!-- JavaFX Maven Plugin -->
-      <!-- On garde un seul plugin JavaFX -->
+
       <plugin>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-maven-plugin</artifactId>
@@ -90,7 +89,7 @@
         </configuration>
       </plugin>
 
-      <!-- Assembly Plugin for JAR with Dependencies -->
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
